@@ -1,0 +1,17 @@
+import requests
+import gpiozero
+from gpiozero import Button
+
+button1 = Button(2)
+
+url= 'https://rma5lh26x6.execute-api.us-east-1.amazonaws.com/v1/tpz-dev-webhook/creative-assessment/'
+##-H 'Content-Type: application/json' -d '{"message":"this is a test","author":"PiZero"}'
+myobj = {"message":"Students approve of our food today","author":"Yummy Button"}
+
+
+
+
+while True:
+    button1.wait_for_press()
+    x = requests.post(url, json= myobj)
+    print(x.text)
